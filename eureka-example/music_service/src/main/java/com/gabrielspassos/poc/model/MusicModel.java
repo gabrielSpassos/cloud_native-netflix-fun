@@ -1,4 +1,4 @@
-package com.gabrielspassos.poc;
+package com.gabrielspassos.poc.model;
 
 public class MusicModel {
 

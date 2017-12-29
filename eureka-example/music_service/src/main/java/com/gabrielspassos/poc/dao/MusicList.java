@@ -1,4 +1,6 @@
-package com.gabrielspassos.poc;
+package com.gabrielspassos.poc.dao;
+
+import com.gabrielspassos.poc.model.MusicModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,8 @@
-package com.gabrielspassos.poc;
+package com.gabrielspassos.poc.service;
+
+import com.gabrielspassos.poc.dao.MusicList;
+import com.gabrielspassos.poc.exceptions.IdNotExistException;
+import com.gabrielspassos.poc.model.MusicModel;
 
 public class MusicService {
 
@@ -9,7 +13,7 @@ public class MusicService {
         musicList.populateList();
     }
 
-    public MusicModel getMusicById(int id){
+    public MusicModel getMusicById(int id) throws IdNotExistException {
         for (int i = 0; i < musicList.getMusicModelList().size() ; i++) {
             if(musicList.getMusicModelList().get(i).getId() == id){
                 musicModel.setId(id);
@@ -19,6 +23,6 @@ public class MusicService {
             }
         }
 
-        return new MusicModel(100,"musica invalida","artista invalido");
+        throw new IdNotExistException();
     }
 }
