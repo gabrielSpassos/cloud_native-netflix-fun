@@ -7,7 +7,6 @@ import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
 
