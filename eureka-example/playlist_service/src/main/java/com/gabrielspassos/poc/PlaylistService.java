@@ -21,7 +21,6 @@ public class PlaylistService {
     public List<MusicModel> getMusicByPlaylistId(int id) throws IdNotFound, IOException, ParseException {
         ids = getPlaylistById(id);
         for (int i = 0; i <ids.size() ; i++) {
-            System.out.println(ids.get(i));
             musics.add(connector.run("http://localhost:9000/musics/"+ids.get(i)));
         }
         return musics;
