@@ -1,5 +1,7 @@
-package com.gabrielspassos.poc;
+package com.gabrielspassos.poc.comunication;
 
+import com.gabrielspassos.poc.exception.FailToAcessOtherApi;
+import com.gabrielspassos.poc.model.MusicModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
@@ -14,7 +16,7 @@ public class Connector {
 
     OkHttpClient client = new OkHttpClient();
 
-    public MusicModel run(String url) throws IOException, ParseException {
+    public MusicModel run(String url) throws IOException, FailToAcessOtherApi {
         Request request = new Request.Builder()
                 .url(url)
                 .build();
@@ -23,7 +25,7 @@ public class Connector {
         try {
             responses = client.newCall(request).execute();
         }catch (IOException e){
-            e.printStackTrace();
+            throw new FailToAcessOtherApi();
         }
 
         String jsonString = responses.body().string();

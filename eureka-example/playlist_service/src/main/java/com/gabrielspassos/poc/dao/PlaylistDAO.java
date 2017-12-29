@@ -1,14 +1,14 @@
-package com.gabrielspassos.poc;
+package com.gabrielspassos.poc.dao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PlaylistModel {
+public class PlaylistDAO {
 
     private int id;
     private List<Integer> playlist = new ArrayList<>();
 
-    public PlaylistModel(int id) {
+    public PlaylistDAO(int id) {
         this.id = id;
     }
 
