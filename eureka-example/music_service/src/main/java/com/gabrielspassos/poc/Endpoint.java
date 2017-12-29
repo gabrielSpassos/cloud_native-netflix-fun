@@ -16,9 +16,4 @@ public class Endpoint {
         return musicService.getMusicById(id);
     }
 
-    @RequestMapping(value = "/musics",
-            method = RequestMethod.GET)
-    public String test(){
-        return "test";
-    }
 }
