@@ -1,39 +1,37 @@
-package com.gabrielspassos.poc.comunication;
+package com.gabrielspassos.poc.eureka;
 
-import com.gabrielspassos.poc.exception.FailToAcessOtherApi;
-import com.gabrielspassos.poc.model.MusicModel;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-
-public class Connector {
+@Component
+public class EurekaDiscovery {
 
     OkHttpClient client = new OkHttpClient();
 
-    public MusicModel run(String url) throws IOException, FailToAcessOtherApi {
+    public EurekaModelDiscover getUrlFromMusicService() throws IOException{
         Request request = new Request.Builder()
-                .url(url)
+                .url("http://localhost:8080/eureka/v2/apps/music-service")
+                .addHeader("Accept","application/json")
                 .build();
         Response responses = null;
 
         try {
             responses = client.newCall(request).execute();
         }catch (IOException e){
-            throw new FailToAcessOtherApi();
+            e.printStackTrace();
         }
 
         String jsonString = responses.body().string();
 
         Gson gson = new GsonBuilder().create();
+        EurekaModelDiscover eurekaModelDiscover = new EurekaModelDiscover();
 
-        MusicModel musicModel = new MusicModel();
-
-        return musicModel = gson.fromJson(jsonString,MusicModel.class);
+        return eurekaModelDiscover = gson.fromJson(jsonString,EurekaModelDiscover.class);
     }
-
 }

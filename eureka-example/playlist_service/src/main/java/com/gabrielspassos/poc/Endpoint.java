@@ -17,13 +17,10 @@ public class Endpoint {
 
     PlaylistService playlistService = new PlaylistService();
 
-
     @RequestMapping(value = "/playlist/{id}",
             method = RequestMethod.GET)
     public List<MusicModel> getMusicById(@PathVariable("id") int id) throws IdNotFound, IOException, FailToAcessOtherApi {
         return playlistService.getMusicByPlaylistId(id);
     }
-
-
 
 }
