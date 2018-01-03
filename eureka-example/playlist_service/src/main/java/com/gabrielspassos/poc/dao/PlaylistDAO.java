@@ -25,7 +25,7 @@ public class PlaylistDAO {
     }
 
     public void populate(){
-        playlist.add(2);
+        playlist.add(3);
         playlist.add(5);
         playlist.add(4);
         playlist.add(7);

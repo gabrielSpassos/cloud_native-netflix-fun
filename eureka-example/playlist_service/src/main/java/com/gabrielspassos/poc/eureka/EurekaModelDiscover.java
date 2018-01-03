@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class EurekaModelDiscover {
 
     private String ipAddr;
-    private int port;
+    private String port;
 
     public String getIpAddr() {
         return ipAddr;
@@ -16,11 +16,11 @@ public class EurekaModelDiscover {
         this.ipAddr = ipAddr;
     }
 
-    public int getPort() {
+    public String getPort() {
         return port;
     }
 
-    public void setPort(int port) {
+    public void setPort(String port) {
         this.port = port;
     }
 }

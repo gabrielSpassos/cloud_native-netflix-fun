@@ -7,6 +7,7 @@ import com.gabrielspassos.poc.exception.FailToAcessOtherApi;
 import com.gabrielspassos.poc.exception.IdNotFound;
 import com.gabrielspassos.poc.model.MusicModel;
 import com.gabrielspassos.poc.dao.PlaylistDAO;
+import org.codehaus.jettison.json.JSONException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,11 +26,11 @@ public class PlaylistService {
     }
 
 
-    public List<MusicModel> getMusicByPlaylistId(int id) throws IdNotFound, IOException, FailToAcessOtherApi {
+    public List<MusicModel> getMusicByPlaylistId(int id) throws IdNotFound, IOException, FailToAcessOtherApi, JSONException {
         ids = getPlaylistById(id);
         EurekaModelDiscover eurekaModelDiscover = eurekaDiscovery.getUrlFromMusicService();
         for (int i = 0; i <ids.size() ; i++) {
-            musics.add(connector.run(eurekaModelDiscover.getIpAddr() + ":"+ eurekaModelDiscover.getPort() + "/musics/" +ids.get(i)));
+            musics.add(connector.run("http://"+eurekaModelDiscover.getIpAddr() + ":"+ eurekaModelDiscover.getPort() + "/musics/" + ids.get(i)));
         }
         return musics;
     }
