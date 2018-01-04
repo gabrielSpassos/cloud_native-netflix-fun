@@ -10,19 +10,7 @@ import java.io.IOException;
 @Component
 public class EurekaRegistry implements ApplicationListener<ApplicationReadyEvent> {
 
-    private String hostName = "music";
-    private String appName =  "music-service";
-    private String vipAddress =   "com.gabrielspassos.poc";
-    private String secureVipAddress =  "com.gabrielspassos.poc";
-    private String ipAddr = "127.0.0.1";
-    private String status = "UP";
-    private int port = 9000;
-    private String healthCheckUrl = "http://localhost:9000/musics";
-    private String statusPageUrl = "http://localhost:9000/musics";
-    private String homePageUrl = "http://localhost:9000/musics";
-    private String dataCenterInfo = "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo";
-    private String dataCenterName = "MyOwn";
-
+    EurekaModelRegistry eurekaModelRegistry = new EurekaModelRegistry();
     OkHttpClient client = new OkHttpClient();
 
     @Override
@@ -38,24 +26,26 @@ public class EurekaRegistry implements ApplicationListener<ApplicationReadyEvent
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json"),"" +
                 "{\"instance\": {" +
-                "   \"hostName\": \""+hostName+"\"," +
-                "   \"app\": \""+appName+"\"," +
-                "   \"vipAddress\": \""+vipAddress+"\"," +
-                "   \"secureVipAddress\": \""+secureVipAddress+"\"," +
-                "   \"ipAddr\": \""+ipAddr+"\"," +
-                "   \"status\": \""+status+"\"," +
-                "   \"port\": {\"$\": \""+port+"\", \"@enabled\": \"true\"}," +
-                "   \"healthCheckUrl\": \""+healthCheckUrl+"\"," +
-                "   \"statusPageUrl\": \""+statusPageUrl+"\"," +
-                "   \"homePageUrl\": \""+homePageUrl+"\"," +
+                "   \"hostName\": \""+ eurekaModelRegistry.getHostName()+"\"," +
+                "   \"app\": \""+ eurekaModelRegistry.getAppName()+"\"," +
+                "   \"vipAddress\": \""+ eurekaModelRegistry.getVipAddress()+"\"," +
+                "   \"secureVipAddress\": \""+ eurekaModelRegistry.getSecureVipAddress()+"\"," +
+                "   \"ipAddr\": \""+ eurekaModelRegistry.getIpAddr()+"\"," +
+                "   \"status\": \""+ eurekaModelRegistry.getStatus()+"\"," +
+                "   \"port\": {\"$\": \""+ eurekaModelRegistry.getPort()+"\", \"@enabled\": \"true\"}," +
+                "   \"healthCheckUrl\": \""+ eurekaModelRegistry.getHealthCheckUrl()+"\"," +
+                "   \"statusPageUrl\": \""+ eurekaModelRegistry.getStatusPageUrl()+"\"," +
+                "   \"homePageUrl\": \""+ eurekaModelRegistry.getHomePageUrl()+"\"," +
                 "   \"dataCenterInfo\": {" +
-                "       \"@class\": \""+dataCenterInfo+"\"," +
-                "       \"name\": \""+dataCenterName+"\"" +
+                "       \"@class\": \""+ eurekaModelRegistry.getDataCenterInfo()+"\"," +
+                "       \"name\": \""+ eurekaModelRegistry.getDataCenterName()+"\"" +
                 " }}}") ;
 
-        Request request2 = new Request.Builder().url("http://localhost:8080/eureka/v2/apps/"+appName).post(body).build() ;
+
+        Request request2 = new Request.Builder().url("http://localhost:8080/eureka/v2/apps/"+ eurekaModelRegistry.getAppName()).post(body).build() ;
         client.newCall(request2).execute() ;
     }
+
 
 
 }
