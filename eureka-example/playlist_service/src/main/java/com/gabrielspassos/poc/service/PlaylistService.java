@@ -32,6 +32,8 @@ public class PlaylistService {
 
 
     public List<MusicModel> getMusicByPlaylistId(int id) throws IdNotFound, IOException, FailToAcessOtherApi, JSONException, EurekaException {
+        musics.clear();
+
         ids = getPlaylistById(id);
 
         List<EurekaModelDiscover> eurekaModelDiscoverList = eurekaDiscovery.getUrlFromMusicService();

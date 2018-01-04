@@ -1,8 +1,10 @@
 package com.gabrielspassos.poc.service;
 
+import com.gabrielspassos.poc.eureka.exceptions.EurekaException;
 import com.gabrielspassos.poc.exception.FailToAcessOtherApi;
 import com.gabrielspassos.poc.exception.IdNotFound;
 import com.gabrielspassos.poc.model.MusicModel;
+import org.codehaus.jettison.json.JSONException;
 import org.junit.Test;
 
 import static junit.framework.TestCase.assertTrue;
@@ -14,10 +16,11 @@ import java.util.List;
 
 public class PlaylistServiceTest {
 
+
     PlaylistService playlistService = new PlaylistService();
 
     @Test
-    public void mustReturnListByPlaylistId() throws IdNotFound, IOException, FailToAcessOtherApi {
+    public void mustReturnListByPlaylistId() throws IdNotFound, IOException, FailToAcessOtherApi, JSONException, EurekaException {
         List<MusicModel> list = new ArrayList<>();
         list.add(new MusicModel(2,"Jovem","Supercombo"));
         list.add(new MusicModel(5,"Cheia de Manias","Raça Negra"));
@@ -34,7 +37,7 @@ public class PlaylistServiceTest {
     }
 
     @Test
-    public void mustThrowExceptionIdNotFound() throws IOException, FailToAcessOtherApi {
+    public void mustThrowExceptionIdNotFound() throws IOException, FailToAcessOtherApi, JSONException, EurekaException {
         try{
             playlistService.getMusicByPlaylistId(100);
         }catch (IdNotFound e){
