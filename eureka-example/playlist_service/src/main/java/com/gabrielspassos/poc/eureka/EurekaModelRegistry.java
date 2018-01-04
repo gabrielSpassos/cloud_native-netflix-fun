@@ -9,9 +9,9 @@ public class EurekaModelRegistry {
     private String ipAddr = "127.0.0.1";
     private String status = "UP";
     private int port = 9001;
-    private String healthCheckUrl = "http://localhost:9001/playlist";
-    private String statusPageUrl = "http://localhost:9001/playlist";
-    private String homePageUrl = "http://localhost:9001/playlist";
+    private String healthCheckUrl = "http://localhost:9001/playlist/1";
+    private String statusPageUrl = "http://localhost:9001/playlist/1";
+    private String homePageUrl = "http://localhost:9001/playlist/1";
     private String dataCenterInfo = "com.netflix.appinfo.InstanceInfo$DefaultDataCenterInfo";
     private String dataCenterName = "MyOwn";
 
