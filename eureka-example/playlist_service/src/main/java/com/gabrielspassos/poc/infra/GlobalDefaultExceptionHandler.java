@@ -1,5 +1,6 @@
 package com.gabrielspassos.poc.infra;
 
+import com.gabrielspassos.poc.eureka.exceptions.EurekaException;
 import com.gabrielspassos.poc.exception.FailToAcessOtherApi;
 import com.gabrielspassos.poc.exception.IdNotFound;
 import com.gabrielspassos.poc.model.Error;
@@ -21,6 +22,12 @@ public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandle
     @ExceptionHandler(value = FailToAcessOtherApi.class)
     public ResponseEntity<Error> failToConnect(){
         Error error = new Error("Fail to connect other micro service");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(value = EurekaException.class)
+    public ResponseEntity<Error> failToConnectEureka(){
+        Error error = new Error("Fail to connect to eureka discovery");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 }
