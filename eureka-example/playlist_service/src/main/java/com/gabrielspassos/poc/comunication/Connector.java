@@ -10,7 +10,6 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
-
 public class Connector {
 
     OkHttpClient client = new OkHttpClient();

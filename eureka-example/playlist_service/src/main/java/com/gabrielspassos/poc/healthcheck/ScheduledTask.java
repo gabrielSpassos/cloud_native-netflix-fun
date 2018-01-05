@@ -1,4 +1,4 @@
-package com.gabrielspassos.poc;
+package com.gabrielspassos.poc.healthcheck;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -12,6 +12,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -22,19 +23,22 @@ public class ScheduledTask {
 
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
 
-    EurekaModelRegistry eurekaModelRegistry = new EurekaModelRegistry();
+    @Autowired
+    EurekaModelRegistry eurekaModelRegistry;
+
     OkHttpClient client = new OkHttpClient();
 
     public ScheduledTask() throws UnknownHostException {
     }
 
-    @Scheduled(fixedRate = 30000)
+    @Scheduled(fixedRate = 10000)
     public void reportCurrentTime() throws IOException {
 
         RequestBody body = RequestBody.create(MediaType.parse("application/json"),"");
 
 
-        Request request = new Request.Builder().url("http://localhost:8080/eureka/v2/apps/playlist-service/playlist").put(body).build() ;
+        Request request = new Request.Builder().url("http://localhost:8080/eureka/v2/apps/playlist-service/"+eurekaModelRegistry.getHostName()).put(body).build() ;
+        System.out.println(eurekaModelRegistry.getHostName()+"\n");
 
         client.newCall(request).execute();
         log.info("The time is now {}", dateFormat.format(new Date()));
