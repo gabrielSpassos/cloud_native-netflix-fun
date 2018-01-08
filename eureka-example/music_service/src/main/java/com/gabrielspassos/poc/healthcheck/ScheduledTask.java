@@ -38,7 +38,6 @@ public class ScheduledTask {
 
 
         Request request = new Request.Builder().url("http://localhost:8080/eureka/v2/apps/music-service/"+eurekaModelRegistry.getHostName()).put(body).build() ;
-        System.out.println(eurekaModelRegistry.getHostName()+"\n");
         client.newCall(request).execute();
         log.info("The time is now {}", dateFormat.format(new Date()));
 
