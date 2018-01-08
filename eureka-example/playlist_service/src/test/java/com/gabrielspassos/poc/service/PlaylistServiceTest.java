@@ -16,9 +16,9 @@ import java.util.List;
 
 public class PlaylistServiceTest {
 
-
     PlaylistService playlistService = new PlaylistService();
 
+    //This test only makes sence if the other micro service is running
     @Test
     public void mustReturnListByPlaylistId() throws IdNotFound, IOException, FailToAcessOtherApi, JSONException, EurekaException {
         List<MusicModel> list = new ArrayList<>();
@@ -45,15 +45,15 @@ public class PlaylistServiceTest {
         }
     }
 
-    /*
-    //This test only makes sence if the other micro service isn't running
-    @Test
-    public void mustThrowExceptionFailToAcessOtherApi() throws IdNotFound, IOException {
-        try{
-            playlistService.getMusicByPlaylistId(1);
-        }catch (FailToAcessOtherApi e){
-            assertTrue(true);
-        }
-    }
-    */
+
+        //This test only makes sence if the other micro service isn't running
+//    @Test
+//    public void mustThrowExceptionFailToAcessOtherApi() throws IdNotFound, IOException, JSONException, EurekaException {
+//        try{
+//            playlistService.getMusicByPlaylistId(1);
+//        }catch (FailToAcessOtherApi e){
+//            assertTrue(true);
+//        }
+//    }
+
 }
