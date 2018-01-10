@@ -1,6 +1,6 @@
 package com.gabrielspassos.poc.service;
 
-import com.gabrielspassos.poc.comunication.Connector;
+import com.gabrielspassos.poc.comunication.MusicServiceConnector;
 import com.gabrielspassos.poc.eureka.EurekaDiscovery;
 import com.gabrielspassos.poc.eureka.EurekaModelDiscover;
 import com.gabrielspassos.poc.eureka.exceptions.EurekaException;
@@ -21,7 +21,7 @@ public class PlaylistService {
 
     private PlaylistDAO playlistDAO = new PlaylistDAO(1);
     private List<Integer> ids = new ArrayList<>();
-    private Connector connector = new Connector();
+    private MusicServiceConnector musicServiceConnector = new MusicServiceConnector();
     private List<MusicModel> musics = new ArrayList<>();
     private EurekaDiscovery eurekaDiscovery = new EurekaDiscovery();
 
@@ -40,7 +40,7 @@ public class PlaylistService {
         String url = eurekaModelDiscoverList.get(0).getIpAddr()+":"+eurekaModelDiscoverList.get(0).getPort();
 
         for (int i = 0; i <ids.size() ; i++) {
-            musics.add(connector.run("http://"+url+ "/musics/" + ids.get(i)));
+            musics.add(musicServiceConnector.run("http://"+url+ "/musics/" + ids.get(i)));
         }
         return musics;
     }

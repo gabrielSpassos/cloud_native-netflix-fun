@@ -11,8 +11,10 @@ import java.util.concurrent.Executors;
 @EnableScheduling
 public class SpringConfiguration {
 
+    private final int threadNumber = 1;
+
     @Bean(destroyMethod = "shutdown")
     public Executor taskScheduler() {
-        return Executors.newScheduledThreadPool(5);
+        return Executors.newScheduledThreadPool(threadNumber);
     }
 }

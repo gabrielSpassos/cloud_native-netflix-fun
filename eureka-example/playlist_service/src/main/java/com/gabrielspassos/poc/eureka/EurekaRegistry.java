@@ -46,9 +46,9 @@ public class EurekaRegistry implements ApplicationListener<ApplicationReadyEvent
                 "   \"ipAddr\": \""+ eurekaModelRegistry.getIpAddr()+"\"," +
                 "   \"status\": \""+ eurekaModelRegistry.getStatus()+"\"," +
                 "   \"port\": {\"$\": \""+ getPort() +"\", \"@enabled\": \"true\"}," +
-                "   \"healthCheckUrl\": \""+ createUrl()+ "\"," +
-                "   \"statusPageUrl\": \""+ createUrl()+ "\"," +
-                "   \"homePageUrl\": \""+ createUrl()+ "\"," +
+                "   \"healthCheckUrl\": \""+ createHealthUrl()+ "\"," +
+                "   \"statusPageUrl\": \""+ createHealthUrl()+ "\"," +
+                "   \"homePageUrl\": \""+ createHealthUrl()+ "\"," +
                 "   \"dataCenterInfo\": {" +
                 "       \"@class\": \""+ eurekaModelRegistry.getDataCenterInfo()+"\"," +
                 "       \"name\": \""+ eurekaModelRegistry.getDataCenterName()+"\"" +
@@ -58,7 +58,7 @@ public class EurekaRegistry implements ApplicationListener<ApplicationReadyEvent
         client.newCall(request2).execute() ;
     }
 
-    private String createUrl(){
+    private String createHealthUrl(){
         return "http://"+eurekaModelRegistry.getIpAddr()+":"+getPort()+"/health";
 
     }

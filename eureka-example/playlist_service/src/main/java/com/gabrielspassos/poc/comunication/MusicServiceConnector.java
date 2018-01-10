@@ -10,7 +10,7 @@ import okhttp3.Response;
 
 import java.io.IOException;
 
-public class Connector {
+public class MusicServiceConnector {
 
     OkHttpClient client = new OkHttpClient();
 
