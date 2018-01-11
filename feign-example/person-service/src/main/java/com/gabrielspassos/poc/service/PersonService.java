@@ -17,6 +17,11 @@ public class PersonService {
     public PersonService() {
     }
 
+    public void setPersonDAO(PersonDAO personDAO) {
+        this.personDAO = personDAO;
+    }
+
+
     public PersonModel getPersonById(int id) throws IdNotExistException {
         for(int i=0; i<personDAO.getPeopleList().size(); i++) {
             if(personDAO.getPeopleList().get(i).getId() == id){
