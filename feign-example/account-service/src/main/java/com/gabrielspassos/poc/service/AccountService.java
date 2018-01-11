@@ -24,6 +24,14 @@ public class AccountService {
 
     PersonModel person = new PersonModel();
 
+    public void setAccountDAO(AccountDAO accountDAO) {
+        this.accountDAO = accountDAO;
+    }
+
+    public void setPersonServiceConnector(PersonServiceConnector personServiceConnector) {
+        this.personServiceConnector = personServiceConnector;
+    }
+
     public List<AccountModel> getAllAccount(){
         for (int i = 0; i <accountDAO.getAccountModelList().size() ; i++) {
             person =  getPersonByAccount(accountDAO.getAccountModelList().get(i).getPerson().getId());
@@ -37,7 +45,6 @@ public class AccountService {
         for (int i = 0; i < accountDAO.getAccountModelList().size(); i++) {
             if(accountDAO.getAccountModelList().get(i).getCode().equals(code)){
                 person =  getPersonByAccount(accountDAO.getAccountModelList().get(i).getPerson().getId());
-                System.out.println(person.getName() + person.getLastName() + person.getId() + person.getAge());
                 accountDAO.getAccountModelList().get(i).setPerson(person);
                 return accountDAO.getAccountModelList().get(i);
             }
