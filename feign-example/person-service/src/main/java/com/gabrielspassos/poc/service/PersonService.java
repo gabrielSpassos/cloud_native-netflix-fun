@@ -3,16 +3,18 @@ package com.gabrielspassos.poc.service;
 import com.gabrielspassos.poc.dao.PersonDAO;
 import com.gabrielspassos.poc.exception.IdNotExistException;
 import com.gabrielspassos.poc.model.PersonModel;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PersonService {
 
-    private PersonDAO personDAO = new PersonDAO();
+    @Autowired
+    PersonDAO personDAO;
+
     private PersonModel person = new PersonModel();
 
     public PersonService() {
-        personDAO.populateList();
     }
 
     public PersonModel getPersonById(int id) throws IdNotExistException {

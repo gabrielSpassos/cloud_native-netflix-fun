@@ -10,12 +10,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("person")
 public class PersonController {
 
     @Autowired
     PersonService personService;
 
-    @RequestMapping(value = "/person/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public PersonModel getPersonById(@PathVariable("id") int id) throws IdNotExistException {
         return personService.getPersonById(id);
     }
