@@ -1,0 +1,16 @@
+group 'load-balance-poc'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'com.netflix.ribbon', name: 'ribbon-httpclient', version: '2.2.4'
+    compile group: 'com.netflix.ribbon', name: 'ribbon', version: '2.2.4'
+}
