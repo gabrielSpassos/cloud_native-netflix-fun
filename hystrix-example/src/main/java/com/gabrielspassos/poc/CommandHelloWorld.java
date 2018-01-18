@@ -9,10 +9,13 @@ public class CommandHelloWorld extends HystrixCommand<String> {
     private final String name;
     private long seconds;
 
+    private final static String COMMAND_NAME = "ExampleGroup";
+    private final static int TIMEOUT = 5000;
+
     public CommandHelloWorld(String name, long seconds) {
-        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("ExampleGroup"))
+        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey(COMMAND_NAME))
                 .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
-                        .withExecutionTimeoutInMilliseconds(5000)));
+                        .withExecutionTimeoutInMilliseconds(TIMEOUT)));
         this.name = name;
         this.seconds = seconds;
     }
