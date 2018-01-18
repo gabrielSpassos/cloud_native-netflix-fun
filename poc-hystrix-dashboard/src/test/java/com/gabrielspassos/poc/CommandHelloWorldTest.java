@@ -19,7 +19,7 @@ public class CommandHelloWorldTest {
     @Test
     public void mustReturnFallback(){
         Message messageExpected = new Message();
-        messageExpected.setText("Hello World! Thread waited for 6 seconds. This is a fallback message");
+        messageExpected.setText("Hello World! Thread waited for 5 seconds. This is a fallback message");
 
         Message messageReturned = new CommandHelloWorld("Nome não deve ser usado",6).execute();
 
